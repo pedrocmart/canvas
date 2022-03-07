@@ -1,0 +1,36 @@
+version: '3.5'
+networks: 
+  ccc: 
+    name: ccc 
+
+services:
+  store:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: canvas
+      POSTGRES_PASSWORD: canvas
+      POSTGRES_DB: canvas_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+    networks:
+      - ccc
+  canvas:
+    image: canvas:local
+    depends_on:
+      - "store"
+    environment:
+      ENV: local
+      HOST:  localhost:9999
+      CANVAS_PORT: '9999'
+
+      CANVAS_DB_HOST:                        store
+      CANVAS_DB_USER:                        canvas
+      CANVAS_DB_PASSWORD:                    canvas
+      CANVAS_DB_NAME:                        canvas_db
+    ports:
+      - "8888:9999"
+    networks:
+      - ccc  
