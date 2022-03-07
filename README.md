@@ -18,9 +18,9 @@ GET localhost:8888/canvas
 ```
 
 
-## Time Spent
-- Approximately 15h
-
-- Demo:
+## Demo
 
 [![DEMO](https://img.youtube.com/vi/5EAc5ZgkYes/0.jpg)](https://youtu.be/5EAc5ZgkYes)
+
+## Time Spent
+- Approximately 15h
